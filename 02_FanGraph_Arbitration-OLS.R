@@ -38,10 +38,9 @@ prev_arb_parse <- function(df){
 mult <- 1
 
 #set your working directory
-setwd('~/fg/projects/alex_arbitration/data_merge/') 
-
+setwd('/Users/seandolinar/fg/projects/alex_arbitration/R/150312/For_GIT/FanGraphs--Arbitration2015/') 
 #data load -- PITCHERS
-data.pitchers.FULL <- read.csv('~/fg/projects/alex_arbitration/data_merge/2011_2015_data_pitchers_v03.csv')
+data.pitchers.FULL <- read.csv('data/2011_2015_data_pitchers.csv')
 data.pitchers.FULL$raise <- data.pitchers.FULL$salary - data.pitchers.FULL$lag_salary
 data.pitchers.FULL$new_cpi <- (data.pitchers.FULL$cpi_deflat-1)*mult+1
 data.pitchers.FULL$raise_adj <- data.pitchers.FULL$raise / data.pitchers.FULL$new_cpi
@@ -57,7 +56,7 @@ data.pitchers.FULL$age <- as.numeric(substr(data.pitchers.FULL$Age.Rng,1,2))
 
 
 #data load -- HITTERS
-data.hitters.FULL <- read.csv('~/fg/projects/alex_arbitration/data_merge/2011_2015_data_hitter_morestats.csv')
+data.hitters.FULL <- read.csv('data/2011_2015_data_hitter.csv')
 data.hitters.FULL$raise <- data.hitters.FULL$salary - data.hitters.FULL$lag_salary
 data.hitters.FULL <- subset(data.hitters.FULL,subset = data.hitters.FULL$note != 'remove')
 data.hitters.FULL <- prev_arb_parse(data.hitters.FULL)
