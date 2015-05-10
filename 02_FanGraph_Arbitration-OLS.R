@@ -103,7 +103,7 @@ AIC(model.pitchers)
 #####################
 
 #OLS model
-model.hitters <- lm(raise_adj ~ PA + HR + RAR + age, data=data.hitters.FULL) #RAR exceeds WAR
+model.hitters <- lm(raise_adj ~ PA + HR + WAR + age, data=data.hitters.FULL) #RAR exceeds WAR
 
 
 summary(model.hitters)  #summary
@@ -136,5 +136,6 @@ AIC(model.hitters.traditional)
 data.out <- rbind(cbind(data.hitters.FULL[,c('salary','lag_salary','cpi_deflat')], y_hat = predict(object = model.hitters, newdata=data.hitters.FULL)*data.hitters.FULL$new_cpi+data.hitters.FULL$lag_salary),
 cbind(data.pitchers.FULL[,c('salary','lag_salary','cpi_deflat')], y_hat = predict(object = model.pitchers, newdata=data.pitchers.FULL)*data.pitchers.FULL$new_cpi+data.pitchers.FULL$lag_salary))
 
+cor(data.out$salary, data.out$y_hat)^2
 write.csv(data.out, file='OLS_y_y_hat.csv')
 
